@@ -43,15 +43,6 @@ class Calculator {
             .any()
     }
 
-    private fun isNumber(text: String): Boolean {
-        return try {
-            text.toInt()
-            true
-        } catch (e: NumberFormatException) {
-            false
-        }
-    }
-
     private fun getAction(symbol: String): (Int, Int) -> Int {
         return Operator.entries
             .filter({ operator -> operator.symbol.equals(symbol) })
