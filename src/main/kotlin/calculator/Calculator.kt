@@ -2,8 +2,8 @@
 package calculator
 
 class Calculator {
-    fun calculate(input: String): Int {
-        if (input.isBlank()) throw IllegalArgumentException("Invalid input")
+    fun calculate(input: String?): Int {
+        if (input.isNullOrBlank()) throw IllegalArgumentException("Invalid input")
         val inputs = input.split(" ")
         val queue: ArrayList<String> = arrayListOf()
         return processStrings(inputs, queue)

@@ -3,34 +3,17 @@ package study
 
 import calculator.Calculator
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class CalculatorTest {
-    @Test
-    fun addTest() {
+    @ParameterizedTest
+    @ValueSource(strings = ["1 + 1", "3 - 1", "2 * 1", "4 / 2"])
+    fun `문자열 계산기 사칙연산 테스트`(input: String) {
         val calculator = Calculator()
-        val result = calculator.calculate("1 + 2")
-        assertThat(result).isEqualTo(3)
-    }
-
-    @Test
-    fun subTest() {
-        val calculator = Calculator()
-        val result = calculator.calculate("5 - 3")
-        assertThat(result).isEqualTo(2)
-    }
-
-    @Test
-    fun multiplyTest() {
-        val calculator = Calculator()
-        val result = calculator.calculate("6 * 4")
-        assertThat(result).isEqualTo(24)
-    }
-
-    @Test
-    fun divideTest() {
-        val calculator = Calculator()
-        val result = calculator.calculate("8 / 4")
+        val result = calculator.calculate(input)
         assertThat(result).isEqualTo(2)
     }
 
@@ -39,5 +22,21 @@ class CalculatorTest {
         val calculator = Calculator()
         val result = calculator.calculate("2 + 3 * 4 / 2")
         assertThat(result).isEqualTo(10)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["", "  "])
+    fun blankTest(input: String?) {
+        val calculator = Calculator()
+        assertThatThrownBy({ calculator.calculate(input) })
+            .isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["%", "^"])
+    fun `연산자가 아닐 때 IllegalArgumentException 리턴하는지 테스트`(input: String) {
+        val calculator = Calculator()
+        assertThatThrownBy({ calculator.calculate(input) })
+            .isInstanceOf(IllegalArgumentException::class.java)
     }
 }
