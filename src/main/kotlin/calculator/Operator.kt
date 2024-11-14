@@ -1,21 +1,21 @@
 package calculator
 
-fun add(
+private fun add(
     a: Int,
     b: Int,
 ): Int = a + b
 
-fun sub(
+private fun sub(
     a: Int,
     b: Int,
 ): Int = a - b
 
-fun mul(
+private fun mul(
     a: Int,
     b: Int,
 ): Int = a * b
 
-fun div(
+private fun div(
     a: Int,
     b: Int,
 ): Int = a / b
