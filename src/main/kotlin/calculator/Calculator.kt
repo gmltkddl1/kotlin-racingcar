@@ -11,8 +11,10 @@ class Calculator {
     private fun processStrings(inputs: List<String>): Int {
         val queue: MutableList<String> = mutableListOf()
         for (i in 0 until inputs.size) {
+            isValid(inputs[i])
             addQueue(inputs[i], queue)
-            processQueue(queue)
+            val processResult = processQueue(queue)
+            resetQueue(processResult, queue)
         }
         return queue[0].toInt()
     }
@@ -21,20 +23,29 @@ class Calculator {
         input: String,
         queue: MutableList<String>,
     ) {
-        isValid(input)
         queue.add(input)
     }
 
-    private fun processQueue(queue: MutableList<String>) {
+    private fun processQueue(queue: List<String>): Int? {
         if (queue.size == 3) {
-            val invoke = getAction(queue[1]).invoke(queue[0].toInt(), queue[2].toInt())
+            return getAction(queue[1]).invoke(queue[0].toInt(), queue[2].toInt())
+        }
+        return null
+    }
+
+    private fun resetQueue(
+        input: Int?,
+        queue: MutableList<String>,
+    ) {
+        if (input != null) {
             queue.clear()
-            queue.add(invoke.toString())
+            queue.add(input.toString())
         }
     }
 
     private fun isValid(input: String) {
-        require(isOperator(input) || input.single().isDigit()) { "Invalid input" }
+        require(isOperator(input)) { "is not operator" }
+        require(input.single().isDigit()) { "Invalid input" }
     }
 
     private fun isOperator(input: String): Boolean {
