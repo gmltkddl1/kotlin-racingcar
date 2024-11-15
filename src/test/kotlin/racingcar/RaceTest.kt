@@ -6,11 +6,12 @@ class RaceTest {
     @Test
     fun drawRaceTest() {
         val race = Race(5)
+        val outputView = OutputView()
         race.process()
-        println(race.drawRace())
+        outputView.drawRace(race)
         race.process()
-        println(race.drawRace())
+        outputView.drawRace(race)
         race.process()
-        println(race.drawRace())
+        outputView.drawRace(race)
     }
 }
