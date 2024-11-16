@@ -10,27 +10,13 @@ class Calculator {
     }
 
     private fun processStrings(inputs: List<String>): Int {
-        var queue: MutableList<String> = mutableListOf()
+        val queue: MutableList<Int> = mutableListOf()
         for (i in 0 until inputs.size) {
-            addQueue(inputs[i], queue)
-            if (queue.size == 3) {
-                queue = mutableListOf(processQueue(queue).toString())
-            }
+            if (inputs[i].single().isDigit()) queue.add(inputs[i].toInt())
         }
-        return queue[0].toInt()
-    }
-
-    private fun addQueue(
-        input: String,
-        queue: MutableList<String>,
-    ) {
-        queue.add(input)
-    }
-
-    private fun processQueue(queue: List<String>): Int {
-        require(queue.size == 3) { "계산기에 충분한 원소가 없어요" }
-        require(isOperator(queue[1])) { "계산기 규칙에 어긋나요: 숫자 연산자 숫자" }
-        return getAction(queue[1]).invoke(queue[0].toInt(), queue[2].toInt())
+        return queue.foldIndexed(0) { index, sum, element ->
+            if (index == 0) sum + element else getAction(inputs[2 * index - 1]).invoke(sum, element)
+        }
     }
 
     private fun isValid(inputs: List<String>) {
@@ -40,10 +26,10 @@ class Calculator {
     }
 
     private fun isOperator(input: String): Boolean {
-        return Operator.entries.any({ it.symbol == input })
+        return Operator.entries.any { it.symbol == input }
     }
 
     private fun getAction(symbol: String): (Int, Int) -> Int {
-        return Operator.entries.first({ it.symbol == symbol }).action
+        return Operator.entries.first { it.symbol == symbol }.action
     }
 }
