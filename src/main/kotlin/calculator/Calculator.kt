@@ -28,7 +28,8 @@ class Calculator {
     }
 
     private fun processQueue(queue: List<String>): Int {
-        require(queue.size == 3) { "계산기 규칙에 어긋나요" }
+        require(queue.size == 3) { "계산기에 충분한 원소가 없어요" }
+        require(isOperator(queue[1])) { "계산기 규칙에 어긋나요: 숫자 연산자 숫자" }
         return getAction(queue[1]).invoke(queue[0].toInt(), queue[2].toInt())
     }
 
