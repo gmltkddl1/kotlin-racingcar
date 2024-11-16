@@ -1,14 +1,16 @@
 package racingcar
 
-import java.security.SecureRandom
+class Car(initialMoveCount: Int) {
+    var moveCount: Int = initialMoveCount
 
-class Car(var moveCount: Int) {
-    fun move() {
-        moveCount++
+    fun process() {
+        val randomNumber = RandomNumberGenerator().getRandomNumber()
+        move(randomNumber)
     }
 
-    fun decide(): Boolean {
-        val secureRandom = SecureRandom()
-        return secureRandom.nextInt(10) >= 4
+    fun move(number: Int) {
+        if (number >= 4) {
+            moveCount++
+        }
     }
 }
