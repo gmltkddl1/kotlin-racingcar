@@ -28,6 +28,10 @@ class OperatorTest {
     fun divTest() {
         assertThat(Operator.DIV.symbol).isEqualTo("/")
         assertThat(Operator.DIV.action(4, 2)).isEqualTo(2)
+    }
+
+    @Test
+    fun divZeroTest() {
         assertThatThrownBy { Operator.DIV.action(4, 0) }.isInstanceOf(ArithmeticException::class.java)
     }
 }
