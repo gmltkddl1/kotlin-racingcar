@@ -1,28 +1,11 @@
 package calculator
 
-private fun add(
-    a: Int,
-    b: Int,
-): Int = a + b
-
-private fun sub(
-    a: Int,
-    b: Int,
-): Int = a - b
-
-private fun mul(
-    a: Int,
-    b: Int,
-): Int = a * b
-
-private fun div(
-    a: Int,
-    b: Int,
-): Int = a / b
-
 enum class Operator(val symbol: String, val action: (Int, Int) -> Int) {
-    ADD("+", { a, b -> add(a, b) }),
-    SUB("-", { a, b -> sub(a, b) }),
-    MUL("*", { a, b -> mul(a, b) }),
-    DIV("/", { a, b -> div(a, b) }),
+    ADD("+", { a, b -> a + b }),
+    SUB("-", { a, b -> a - b }),
+    MUL("*", { a, b -> a * b }),
+    DIV("/", { a, b ->
+        if (b == 0) throw ArithmeticException("0으로 나눌 수 없음")
+        a / b
+    }),
 }

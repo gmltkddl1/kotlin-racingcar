@@ -1,0 +1,38 @@
+package racingcar
+
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+
+class CarTest {
+    @Test
+    fun moveTest() {
+        val car = Car(0)
+        car.move(5)
+        assertThat(car.moveCount).isEqualTo(1)
+    }
+
+    @Test
+    fun moveThreeTimesTest() {
+        val car = Car(0)
+        car.move(5)
+        car.move(6)
+        car.move(8)
+        assertThat(car.moveCount).isEqualTo(3)
+    }
+
+    @Test
+    fun notMoveTest() {
+        val car = Car(0)
+        car.move(2)
+        assertThat(car.moveCount).isEqualTo(0)
+    }
+
+    @Test
+    fun notMoveThreeTimesTest() {
+        val car = Car(0)
+        car.move(2)
+        car.move(1)
+        car.move(3)
+        assertThat(car.moveCount).isEqualTo(0)
+    }
+}

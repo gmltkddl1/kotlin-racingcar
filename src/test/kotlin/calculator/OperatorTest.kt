@@ -2,6 +2,7 @@
 package calculator
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 class OperatorTest {
@@ -27,5 +28,10 @@ class OperatorTest {
     fun divTest() {
         assertThat(Operator.DIV.symbol).isEqualTo("/")
         assertThat(Operator.DIV.action(4, 2)).isEqualTo(2)
+    }
+
+    @Test
+    fun divZeroTest() {
+        assertThatThrownBy { Operator.DIV.action(4, 0) }.isInstanceOf(ArithmeticException::class.java)
     }
 }
