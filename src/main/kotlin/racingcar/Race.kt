@@ -1,12 +1,12 @@
 package racingcar
 
 class Race(numberOfCar: Int) {
-    val carList: List<Car> =
-        List(numberOfCar) { Car(0) }
+    val cars: List<Car> =
+        List(numberOfCar) { Car() }
 
     fun process() {
-        for (car in carList) {
-            car.process()
+        cars.forEach {
+            it.process()
         }
     }
 }

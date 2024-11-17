@@ -1,7 +1,11 @@
 package racingcar
 
-class Car(initialMoveCount: Int) {
-    var moveCount: Int = initialMoveCount
+class Car(initialMoveCount: Int = 0) {
+    companion object {
+        const val MOVE_MINIMUM_VALUE = 4
+    }
+
+    private var moveCount: Int = initialMoveCount
 
     fun process() {
         val randomNumber = RandomNumberGenerator().getRandomNumber()
@@ -9,8 +13,12 @@ class Car(initialMoveCount: Int) {
     }
 
     fun move(number: Int) {
-        if (number >= 4) {
+        if (number >= MOVE_MINIMUM_VALUE) {
             moveCount++
         }
+    }
+
+    fun status(): Int {
+        return moveCount
     }
 }
