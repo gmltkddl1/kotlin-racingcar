@@ -29,13 +29,24 @@ class CalculatorTest {
         val calculator = Calculator()
         assertThatThrownBy({ calculator.calculate(input) })
             .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("Invalid input")
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["%", "^"])
+    @ValueSource(strings = ["1 % 3", "1 ^ 3"])
     fun `연산자가 아닐 때 IllegalArgumentException 리턴하는지 테스트`(input: String) {
         val calculator = Calculator()
         assertThatThrownBy({ calculator.calculate(input) })
             .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("is not operator")
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["+ +, - -"])
+    fun `숫자 자리에 연산자를 넣을때 IllegalArgumentException 리턴하는지 테스트`(input: String) {
+        val calculator = Calculator()
+        assertThatThrownBy({ calculator.calculate(input) })
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("is not digit")
     }
 }
