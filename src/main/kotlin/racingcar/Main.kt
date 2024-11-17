@@ -15,4 +15,5 @@ fun main() {
         race.process()
         outputView.drawRace(race)
     }
+    outputView.drawWinner(race)
 }

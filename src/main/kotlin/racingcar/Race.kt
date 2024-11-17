@@ -10,4 +10,10 @@ class Race(
             it.process()
         }
     }
+
+    fun getWinner(): List<Car> {
+        var max = 0
+        cars.forEach { if (it.status() > max) max = it.status() }
+        return cars.filter { it.status() == max }
+    }
 }

@@ -9,6 +9,16 @@ class OutputView() {
         println(sb.toString())
     }
 
+    fun drawWinner(race: Race) {
+        val sb = StringBuilder()
+        race.getWinner().forEach {
+            sb.append(it.name)
+            sb.append(", ")
+        }
+        sb.delete(sb.length - 2, sb.length)
+        println(sb.toString())
+    }
+
     private fun drawCar(car: Car): String {
         val sb = StringBuilder()
         sb.append(car.name)
