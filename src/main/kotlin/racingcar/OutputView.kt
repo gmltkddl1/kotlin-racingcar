@@ -11,6 +11,7 @@ class OutputView() {
 
     private fun drawCar(car: Car): String {
         val sb = StringBuilder()
+        sb.append(car.name)
         for (i in 1..car.status()) {
             sb.append("-")
         }

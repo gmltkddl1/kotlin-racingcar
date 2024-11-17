@@ -1,8 +1,9 @@
 package racingcar
 
-class Race(numberOfCar: Int) {
-    val cars: List<Car> =
-        List(numberOfCar) { Car() }
+class Race(
+    names: List<String>,
+) {
+    val cars: List<Car> = names.map { Car(name = it) }
 
     fun process() {
         cars.forEach {
