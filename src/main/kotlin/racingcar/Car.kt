@@ -2,7 +2,7 @@ package racingcar
 
 class Car(initialMoveCount: Int = 0) {
     companion object {
-        const val MOVE_MINIMUM_VALUE = 4
+        private const val MOVE_MINIMUM_VALUE = 4
     }
 
     private var moveCount: Int = initialMoveCount

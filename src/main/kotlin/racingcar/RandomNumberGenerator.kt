@@ -4,7 +4,7 @@ import java.security.SecureRandom
 
 class RandomNumberGenerator {
     companion object {
-        const val MAX_NUMBER = 10
+        private const val MAX_NUMBER = 10
     }
 
     fun getRandomNumber(): Int {
