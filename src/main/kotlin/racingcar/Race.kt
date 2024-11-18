@@ -12,8 +12,7 @@ class Race(
     }
 
     fun getWinner(): List<Car> {
-        var max = 0
-        cars.forEach { if (it.status() > max) max = it.status() }
-        return cars.filter { it.status() == max }
+        val max = cars.maxOf { it.moveCount }
+        return cars.filter { it.moveCount == max }
     }
 }
