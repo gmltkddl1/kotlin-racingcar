@@ -1,4 +1,7 @@
-package racingcar
+package racingcar.view
+
+import racingcar.domain.Car
+import racingcar.domain.Race
 
 class OutputView() {
     fun drawRace(race: Race) {

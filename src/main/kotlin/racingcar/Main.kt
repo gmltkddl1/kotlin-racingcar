@@ -1,5 +1,9 @@
 package racingcar
 
+import racingcar.domain.Race
+import racingcar.view.InputView
+import racingcar.view.OutputView
+
 fun main() {
     val inputView = InputView()
     val outputView = OutputView()
