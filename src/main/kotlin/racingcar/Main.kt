@@ -4,15 +4,16 @@ fun main() {
     val inputView = InputView()
     val outputView = OutputView()
 
-    inputView.drawNumberOfCarInput()
-    val numberOfCar = readln().toInt()
+    inputView.drawNamesInput()
+    val names = readln().split(",")
     inputView.drawNumberOfTryInput()
-    val numberOfTry = readln().toInt()
+    val numberOfTrys = readln().toInt()
 
-    val race = Race(numberOfCar)
+    val race = Race(names)
 
-    for (i in 1..numberOfTry) {
+    for (i in 1..numberOfTrys) {
         race.process()
         outputView.drawRace(race)
     }
+    outputView.drawWinner(race)
 }

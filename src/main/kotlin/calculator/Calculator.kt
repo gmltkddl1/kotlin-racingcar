@@ -20,8 +20,9 @@ class Calculator {
     }
 
     private fun isValid(inputs: List<String>) {
-        for (input in inputs) {
-            require(isOperator(input) || input.single().isDigit()) { "is not operator and digit" }
+        for (i in 0 until inputs.size) {
+            require(i % 2 == 0 || isOperator(inputs[i])) { "is not operator" }
+            require(i % 2 == 1 || inputs[i].single().isDigit()) { "is not digit" }
         }
     }
 
