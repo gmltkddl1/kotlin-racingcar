@@ -7,7 +7,8 @@ class Race(
 
     fun process() {
         cars.forEach {
-            it.process()
+            val randomNumberGenerator = RandomNumberGenerator()
+            it.move(randomNumberGenerator.getRandomNumber())
         }
     }
 

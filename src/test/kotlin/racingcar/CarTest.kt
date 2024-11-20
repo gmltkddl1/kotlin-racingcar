@@ -1,5 +1,6 @@
 package racingcar
 
+import io.kotest.matchers.shouldBe
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
@@ -7,15 +8,22 @@ import racingcar.domain.Car
 
 class CarTest {
     @Test
+    fun `car 생성 테스트`() {
+        val car = Car(initialMoveCount = 5, name = "car12")
+        car.name shouldBe "car12"
+        car.moveCount shouldBe 5
+    }
+
+    @Test
     fun moveTest() {
-        val car = Car(0)
+        val car = Car(0, "car1")
         car.move(5)
         assertThat(car.moveCount).isEqualTo(1)
     }
 
     @Test
     fun moveThreeTimesTest() {
-        val car = Car(0)
+        val car = Car(0, "car1")
         car.move(5)
         car.move(6)
         car.move(8)
@@ -24,14 +32,14 @@ class CarTest {
 
     @Test
     fun notMoveTest() {
-        val car = Car(0)
+        val car = Car(0, "car1")
         car.move(2)
         assertThat(car.moveCount).isEqualTo(0)
     }
 
     @Test
     fun notMoveThreeTimesTest() {
-        val car = Car(0)
+        val car = Car(0, "car1")
         car.move(2)
         car.move(1)
         car.move(3)

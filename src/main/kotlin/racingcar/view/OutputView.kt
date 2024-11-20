@@ -13,19 +13,18 @@ class OutputView() {
     }
 
     fun drawWinner(race: Race) {
-        val sb = StringBuilder()
-        sb.append(
-            race.getWinner().map { it.name }
-                .joinToString(","),
-        )
-        println(sb.toString())
+        val winnersString =
+            race.getWinner()
+                .map { it.name }
+                .joinToString(",")
+        println(winnersString)
     }
 
     private fun drawCar(car: Car): String {
         val sb = StringBuilder()
         sb.append(car.name)
         sb.append(" : ")
-        for (i in 1..car.moveCount) {
+        repeat(car.moveCount) {
             sb.append("-")
         }
         sb.append("\n")
