@@ -3,8 +3,8 @@ package racingcar.domain
 import java.security.SecureRandom
 
 class RandomNumberGenerator {
-    companion object {
-        const val MAX_NUMBER = 9
+    fun getRandomNumbers(numberCount: Int): List<Int> {
+        return List(numberCount) { getRandomNumber() }
     }
 
     private fun getRandomNumber(): Int {
@@ -12,7 +12,7 @@ class RandomNumberGenerator {
         return secureRandom.nextInt(MAX_NUMBER)
     }
 
-    fun getRandomNumbers(numberCount: Int): List<Int> {
-        return List(numberCount) { getRandomNumber() }
+    companion object {
+        const val MAX_NUMBER = 9
     }
 }

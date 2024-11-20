@@ -7,7 +7,7 @@ import racingcar.domain.RaceRecord
 class OutputView() {
     fun drawRaceGame(raceGame: RaceGame) {
         raceGame.raceRecords.raceRecords.forEach { drawRace(it) }
-        println(raceGame.raceRecords.getWinner())
+        println(raceGame.getWinner().joinToString(","))
     }
 
     private fun drawRace(raceRecord: RaceRecord) {
