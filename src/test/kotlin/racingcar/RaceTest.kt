@@ -14,12 +14,9 @@ class RaceTest {
     }
 
     @Test
-    fun `우승자 테스트`() {
+    fun `레이스 실행 테스트`() {
         val race = Race(listOf("car1", "car2", "car3"))
-        race.cars[0].move(4)
-        race.cars[1].move(4)
-        val winners = race.getWinner()
-        assertThat(winners.size).isEqualTo(2)
-        assertThat(winners).containsExactly(race.cars[0], race.cars[1])
+        race.doRace(listOf(3, 4, 4))
+        assertThat(race.cars.map { it.moveCount }).containsExactly(0, 1, 1)
     }
 }

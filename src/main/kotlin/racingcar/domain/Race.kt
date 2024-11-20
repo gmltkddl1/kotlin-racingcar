@@ -5,15 +5,8 @@ class Race(
 ) {
     val cars: List<Car> = names.map { Car(name = it) }
 
-    fun process() {
-        cars.forEach {
-            val randomNumberGenerator = RandomNumberGenerator()
-            it.move(randomNumberGenerator.getRandomNumber())
-        }
-    }
-
-    fun getWinner(): List<Car> {
-        val max = cars.maxOf { it.moveCount }
-        return cars.filter { it.moveCount == max }
+    fun doRace(numbers: List<Int>) {
+        require(cars.size == numbers.size)
+        repeat(cars.size) { index -> cars[index].move(numbers[index]) }
     }
 }

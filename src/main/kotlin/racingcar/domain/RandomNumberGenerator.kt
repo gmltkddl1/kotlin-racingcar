@@ -4,11 +4,15 @@ import java.security.SecureRandom
 
 class RandomNumberGenerator {
     companion object {
-        private const val MAX_NUMBER = 10
+        const val MAX_NUMBER = 9
     }
 
-    fun getRandomNumber(): Int {
+    private fun getRandomNumber(): Int {
         val secureRandom = SecureRandom()
         return secureRandom.nextInt(MAX_NUMBER)
+    }
+
+    fun getRandomNumbers(numberCount: Int): List<Int> {
+        return List(numberCount) { getRandomNumber() }
     }
 }

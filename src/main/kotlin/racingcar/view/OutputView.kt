@@ -1,33 +1,27 @@
 package racingcar.view
 
-import racingcar.domain.Car
-import racingcar.domain.Race
+import racingcar.domain.CarRecord
+import racingcar.domain.RaceGame
+import racingcar.domain.RaceRecord
 
 class OutputView() {
-    fun drawRace(race: Race) {
-        val sb = StringBuilder()
-        repeat(race.cars.size) { index ->
-            sb.append(drawCar(race.cars[index]))
-        }
-        println(sb.toString())
+    fun drawRaceGame(raceGame: RaceGame) {
+        raceGame.raceRecords.raceRecords.forEach { drawRace(it) }
+        println(raceGame.raceRecords.getWinner())
     }
 
-    fun drawWinner(race: Race) {
-        val winnersString =
-            race.getWinner()
-                .map { it.name }
-                .joinToString(",")
-        println(winnersString)
+    private fun drawRace(raceRecord: RaceRecord) {
+        raceRecord.carRecords.forEach { drawCar(it) }
+        println()
     }
 
-    private fun drawCar(car: Car): String {
+    private fun drawCar(carRecord: CarRecord) {
         val sb = StringBuilder()
-        sb.append(car.name)
+        sb.append(carRecord.name)
         sb.append(" : ")
-        repeat(car.moveCount) {
+        repeat(carRecord.moveCount) {
             sb.append("-")
         }
-        sb.append("\n")
-        return sb.toString()
+        println(sb.toString())
     }
 }
