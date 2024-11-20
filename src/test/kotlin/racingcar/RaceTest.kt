@@ -9,7 +9,6 @@ class RaceTest {
     fun `자동차 생성 테스트`() {
         val race = Race(listOf("car1", "car2", "car3"))
         assertThat(race.cars.size).isEqualTo(3)
-        race.cars.forEach { assertThat(it.moveCount).isEqualTo(0) }
         assertThat(race.cars.map { it.moveCount }).containsExactly(0, 0, 0)
         assertThat(race.cars.map { it.name }).containsExactly("car1", "car2", "car3")
     }
