@@ -1,6 +1,3 @@
 package racingcar.domain
 
-class CarRecord(car: Car) {
-    val name = car.name
-    val moveCount = car.moveCount
-}
+class CarRecord(val name: String, val moveCount: Int)

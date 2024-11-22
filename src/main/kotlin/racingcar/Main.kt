@@ -1,6 +1,5 @@
 package racingcar
 
-import racingcar.domain.Race
 import racingcar.domain.RaceGame
 import racingcar.domain.RandomNumberGenerator
 import racingcar.view.InputView
@@ -16,14 +15,7 @@ fun main() {
     inputView.drawNumberOfTryInput()
     val numberOfTrys = readln().toInt()
 
-    val race = Race(names)
-    val raceGame = RaceGame(race)
-
-    val numbersLists: MutableList<List<Int>> = mutableListOf()
-    repeat(numberOfTrys) {
-        numbersLists.add(randomNumberGenerator.getRandomNumbers(names.size))
-    }
-
-    raceGame.doRaceGame(numbersLists)
+    val raceGame = RaceGame.of(names, randomNumberGenerator)
+    raceGame.doRaceGame(numberOfTrys)
     outputView.drawRaceGame(raceGame)
 }

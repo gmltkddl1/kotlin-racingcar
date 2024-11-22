@@ -1,19 +1,25 @@
 package racingcar.domain
 
-class RaceGame(val race: Race) {
-    val raceRecords = RaceRecords()
-
-    fun doRaceGame(numberLists: List<List<Int>>) {
-        numberLists.forEach {
-            race.doRace(it)
-            raceRecords.addRaceRecord(RaceRecord(race = race))
+class RaceGame(
+    val race: Race,
+    var raceResult: RaceResult,
+) {
+    fun doRaceGame(numberOfTry: Int) {
+        repeat(numberOfTry) {
+            race.doRace()
+            val raceRecord = RaceRecord(race)
+            raceResult = raceResult.addRaceRecord(raceRecord)
         }
     }
 
-    fun getWinner(): List<String> {
-        val max = race.cars.maxOf { it.moveCount }
-        return race.cars
-            .filter { it.moveCount == max }
-            .map { it.name }
+    companion object {
+        fun of(
+            names: List<String>,
+            numberGenerator: NumberGenerator,
+        ): RaceGame {
+            val race = Race.Companion.of(names, numberGenerator)
+            val raceResult = RaceResult(listOf())
+            return RaceGame(race, raceResult)
+        }
     }
 }

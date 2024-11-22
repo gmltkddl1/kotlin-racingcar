@@ -1,17 +1,19 @@
 package racingcar.domain
 
 class Car(
-    initialMoveCount: Int = 0,
     val name: String,
+    initialMove: Int = 0,
+    private val numberGenerator: NumberGenerator = RandomNumberGenerator(),
 ) {
-    var moveCount: Int = initialMoveCount
+    var moveCount = initialMove
         private set
 
     init {
         require(name.length <= MAX_NAME_LENGTH) { "자동차 이름이 너무 길어요" }
     }
 
-    fun move(number: Int) {
+    fun move() {
+        val number = numberGenerator.getNumber()
         if (number >= MOVE_MINIMUM_VALUE) {
             moveCount++
         }

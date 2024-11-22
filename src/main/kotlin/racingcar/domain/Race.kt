@@ -1,12 +1,20 @@
 package racingcar.domain
 
 class Race(
-    names: List<String>,
+    val cars: List<Car>,
+    private val numberGenerator: NumberGenerator = RandomNumberGenerator(),
 ) {
-    val cars: List<Car> = names.map { Car(name = it) }
+    fun doRace() {
+        cars.forEach { it.move() }
+    }
 
-    fun doRace(numbers: List<Int>) {
-        require(cars.size == numbers.size) { "랜덤 숫자가 차의 갯수보다 적게 들어왔어요" }
-        repeat(cars.size) { index -> cars[index].move(numbers[index]) }
+    companion object {
+        fun of(
+            names: List<String>,
+            numberGenerator: NumberGenerator,
+        ): Race {
+            val cars = names.map { Car(name = it, numberGenerator = numberGenerator) }
+            return Race(cars, numberGenerator)
+        }
     }
 }

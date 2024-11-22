@@ -6,22 +6,19 @@ import racingcar.domain.RaceRecord
 
 class OutputView() {
     fun drawRaceGame(raceGame: RaceGame) {
-        raceGame.raceRecords.raceRecords.forEach { drawRace(it) }
-        println(raceGame.getWinner().joinToString(","))
+        raceGame.raceResult.raceRecords.forEach { drawRace(it) }
+        val winner = raceGame.raceResult.getWinner()
+        println(winner.joinToString(",") { it.name })
     }
 
     private fun drawRace(raceRecord: RaceRecord) {
-        raceRecord.carRecords.forEach { drawCar(it) }
+        raceRecord.cars.forEach { drawCar(it) }
         println()
     }
 
     private fun drawCar(carRecord: CarRecord) {
-        val sb = StringBuilder()
-        sb.append(carRecord.name)
-        sb.append(" : ")
-        repeat(carRecord.moveCount) {
-            sb.append("-")
-        }
-        println(sb.toString())
+        var outputPrefix = carRecord.name + " : "
+        repeat(carRecord.moveCount) { outputPrefix = "$outputPrefix-" }
+        println(outputPrefix)
     }
 }
